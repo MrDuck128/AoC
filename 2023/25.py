@@ -14,5 +14,5 @@ for node in graph.nodes:
     if node != node1:
         cut, (a, b) = nx.minimum_cut(graph, node, node1)
         if cut == 3:
-            print(len(a) * len(b))
+            print('Part 1:', len(a) * len(b))
             break
