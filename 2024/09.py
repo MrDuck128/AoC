@@ -35,10 +35,16 @@ def part1(disk):
 def part2(disk, diskMap, blanksRanges):
     for file, (index, length) in reversed(diskMap.items()):
         for i, (bs, bl) in enumerate(blanksRanges):
-            if bs < index and bl >= length:
+            if bs >= index:
+                blanksRanges = blanksRanges[:i]
+                break
+            if bl >= length:
                 disk[bs:bs+length] = [file] * length
                 disk[index:index+length] = [-1] * length
-                blanksRanges[i] = (bs+length, bl-length)
+                if bl == length:
+                    del blanksRanges[i]
+                else:
+                    blanksRanges[i] = (bs+length, bl-length)
                 break
 
     return sum(i * val for i, val in enumerate(disk) if val != -1)
