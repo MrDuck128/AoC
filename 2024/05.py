@@ -20,7 +20,7 @@ def ordered(update):
             return False
     return True
 
-def stableTopologicalSort(rules, items):
+def stableTopologicalSort(rules, update):
     G = nx.DiGraph()
     
     for key, dependencies in rules.items():
