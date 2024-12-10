@@ -10,7 +10,6 @@ trailheads = [(i, j) for i in range(maxI) for j in range(maxJ) if grid[i][j] == 
 total1 = total2 = 0
 for (i, j) in trailheads:
     Q = deque([(i, j)])
-    visited = {(i, j)}
     peaks = 0
     peaksVisited = set()
 
