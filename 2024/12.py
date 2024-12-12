@@ -28,11 +28,9 @@ total2 = total1 = 0
 for positions in plots:
     positions.sort(key=lambda x: (x[0], x[1]))
     area = len(positions)
-    corners = 0
-    perimeter = 0
-
+    perimeter = corners = 0
+    
     for i, j in positions:
-        edges = 0
         neighbours = [1 if (ni, nj) not in positions else 0 for ni, nj in [(i-1, j), (i, j+1), (i+1, j), (i, j-1)]]
         perimeter += sum(neighbours)
         betweens = [1 if (ni, nj) not in positions else 0 for ni, nj in [(i-1, j+1), (i+1, j+1), (i+1, j-1), (i-1, j-1)]]
