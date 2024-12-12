@@ -24,34 +24,24 @@ for r, line in enumerate(grid):
                     visited.add((ni, nj))
         plots.append(plot)
 
-total = 0
-for positions in plots:
-    area = len(positions)
-    perimeter = 0
-
-    for (i, j) in positions:
-        for ni, nj in [(i-1, j), (i, j+1), (i+1, j), (i, j-1)]:
-            if (ni, nj) not in positions:
-                perimeter += 1
-
-    total += area * perimeter
-
-print('Part 1:', total)
-
-total2 = 0
+total2 = total1 = 0
 for positions in plots:
     positions.sort(key=lambda x: (x[0], x[1]))
     area = len(positions)
     corners = 0
+    perimeter = 0
 
-    for counter, (i, j) in enumerate(positions):
+    for i, j in positions:
         edges = 0
         neighbours = [1 if (ni, nj) not in positions else 0 for ni, nj in [(i-1, j), (i, j+1), (i+1, j), (i, j-1)]]
+        perimeter += sum(neighbours)
         betweens = [1 if (ni, nj) not in positions else 0 for ni, nj in [(i-1, j+1), (i+1, j+1), (i+1, j-1), (i-1, j-1)]]
         neighbours += [neighbours[0]]
         for el, next, between in zip(neighbours, neighbours[1:], betweens):
             if el == 1 and next == 1 or el == 0 and next == 0 and between == 1:
                 corners += 1
-    total2 += corners * area
+    total1 += area * perimeter
+    total2 += area * corners
 
+print('Part 1:', total1)
 print('Part 2:', total2)
