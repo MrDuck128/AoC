@@ -6,15 +6,12 @@ with open('14.txt') as f:
 robots = {(d, c, b, a): (b, a) for line in lines for a, b, c, d in [map(int, re.findall('-?\\d+', line))]}
 h, w = 103, 101
 
-def advanceRobots(robots):
+def advanceRobots(robots, step=1):
     for (di, dj, *rest), (i, j) in robots.items():
-        newI = (i+di)%h if (i+di) > -1 else h+(i+di)
-        newJ = (j+dj)%w if (j+dj) > -1 else w+(j+dj)
-        robots[(di, dj, *rest)] = (newI, newJ)
+        robots[(di, dj, *rest)] = ((i+di*step)%h, (j+dj*step)%w)
     return robots
 
-for sec in range(100):
-    robots = advanceRobots(robots)
+robots = advanceRobots(robots, 100)
 
 q1 = q2 = q3 = q4 = 0
 hh, hw = h//2, w//2
