@@ -31,7 +31,7 @@ while Q:
     di, dj = dirs[d]
 
     for (nscore, ni, nj, nd, path) in [(score+1, i+di, j+dj, d, path+[(i+di, j+dj)]), (score+1000, i, j, (d+1)%4, path), (score+1000, i, j, (d-1)%4, path)]:
-        if grid[ni][nj] == '#' or ((ni, nj, nd) in seen and seen[(ni, nj, nd)] <= nscore): continue
+        if grid[ni][nj] == '#' or ((ni, nj, nd) in seen and seen[(ni, nj, nd)] < nscore): continue
         seen[(ni, nj, nd)] = nscore
         heappush(Q, (nscore, ni, nj, nd, path))
 
