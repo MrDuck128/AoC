@@ -9,7 +9,7 @@ total, pb = 0, 0
 for a, b in sorted(ranges):
     if b <= pb and a <= pb: continue
     elif a <= pb: total += b - pb
-    else:total += b - a + 1
+    else: total += b - a + 1
     pb = b
 
 print('Part 2:', total)

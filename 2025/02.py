@@ -1,7 +1,7 @@
 import re
 
 with open('02.txt') as f:
-    data =[tuple(map(int, pair.split('-'))) for pair in f.read().split(',')]
+    data = [tuple(map(int, pair.split('-'))) for pair in f.read().split(',')]
 
 total1, total2 = 0, 0
 for a, b in data:
